@@ -1,3 +1,5 @@
+CONSTANTE_BONUS = 1000
+
 # 1) Solicite ao usuario que digite seu nome
 name = str(input("Digite seu nome (Ex: Leandro): "))
 
@@ -10,7 +12,7 @@ salario = float(input("Digite o valor do seu salario (Ex: 1000): "))
 bonus = float(input("Digite a porcentagem do seu bonus (Ex: 2.5): "))
 
 # 4) Calcule o valor do bonus final
-kpi = 1000+salario*bonus
+kpi = CONSTANTE_BONUS + salario * bonus
 
 # 5) Imprima o valor do KPI para o usuario
 print(kpi)
