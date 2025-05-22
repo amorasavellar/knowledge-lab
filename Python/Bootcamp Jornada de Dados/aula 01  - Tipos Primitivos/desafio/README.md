@@ -25,3 +25,15 @@ Olá Luciano, o seu bônus foi de 8500
 6. Salve esse script python como `kpi.py`
 7. Faça uma documentação simples de como executar esse programa, utilize o `README`
 8. Salve no Git e no Github
+
+# Resolução do Desafio:
+
+O programa desenvolvido é capaz de armazenar as informações de nome, salario, e percentual de  bonus e calcular qual o total do usuário irá receber.
+
+# Instruções para Execução do Codígo:
+
+Para executar o programa, digite o seguinte comando abaixo:
+
+```bash
+$ python3 kpi.py
+```
