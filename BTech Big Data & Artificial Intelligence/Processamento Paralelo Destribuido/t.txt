@@ -1,0 +1,22 @@
+
+
+
+    # Cria e inicia um processo para cada linha de A
+    for i in range(A.shape[0]):
+        p = Process(target=multiply_row, args=(A[i], B, i, C_shared))
+        processes.append(p)
+        p.start()
+
+
+[[4.0 4.3 6.5  0.5]
+ [4.4 504.3 2.0  8.2]
+ [p p p  p]
+ [p p p  p]]
+
+
+ p = A[i] * B(toda) C[i]
+
+ dtype(p)
+ multiprocessing.Array
+
+ <opixholshpihsko0-89w790803>
