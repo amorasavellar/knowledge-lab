@@ -1,7 +1,0 @@
-# 19. Faça um programa que compare se dois números fornecidos pelo usuário são iguais.
-primeiro_numero = int(input("Digite o primeiro número inteiro (Ex: 1): "))
-segundo_numero = int(input("Digite o segundo número inteiro (Ex: 1): "))
-
-comparacao = primeiro_numero == segundo_numero
-
-print(f"Os dois números são iguais? {comparacao}")
