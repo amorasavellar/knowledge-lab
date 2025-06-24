@@ -1,109 +1,75 @@
-import numpy as np
 import pandas as pd
-from faker import Faker
-from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 import matplotlib.pyplot as plt
-from loguru import logger as lg
+import os
 
+# 1. Carregar o dataset
+try:
+    df = pd.read_csv('fictitious_tca_diagnosis.csv')
+    print("Dados carregados com sucesso!")
+    print("\nPrimeiras 5 linhas do dataset:")
+    print(df.head())
+    print("\nInformações do dataset:")
+    print(df.info())
+except FileNotFoundError:
+    print("Erro: O arquivo 'fictitious_tca_diagnosis.csv' não foi encontrado.")
+    print("Certifique-se de que o arquivo CSV está na mesma pasta do script.")
+    exit()
 
-DATASET_ROWS = 100
+# 2. Preparar os dados para o modelo
+# Desconsiderar as colunas 'patient_id' e 'tca_diagnosis' para as features (X)
+# 'tca_diagnosis' será a variável alvo (y)
+X = df.drop(columns=['patient_id', 'tca_diagnosis'])
+y = df['tca_diagnosis']
 
-def generate_data(num_rows:int):
-    
-    """
-    Assessment 1 (If yes to all questions, proceed to Assessment 2):
-    Question 1 - In the past 3 months, have you had any episodes of binge eating? (eating a much larger amount of food than most people would eat in the same period of time)
-    Question 2 - Do you feel distressed or have any kind of suffering when you have these episodes?
-    Question 3 - Do you feel like you lose control over your intake during episodes?
-    Question 4 - After episodes of excessive drinking, do you usually induce vomiting, use medication or exercise to control your body weight?
+# Mapeamento dos nomes das colunas para os nomes das perguntas do fluxograma para melhor visualização.
+# A ordem aqui é apenas para as labels, não para forçar a ordem de split do algoritmo.
+feature_names_mapping = {
+    'question1': 'Q1: Ingestão excessiva de alimentos (SIM/NÃO)?',
+    'question2': 'Q2: Angústia/Sofrimento (SIM/NÃO)?',
+    'question3': 'Q3: Perda de controle sobre a ingestão (SIM/NÃO)?',
+    'question4': 'Q4: Comportamentos compensatórios (SIM/NÃO)?',
+    'question5': 'Q5: Come mais rapidamente (SIM/NÃO)?',
+    'question6': 'Q6: Come até se sentir desconfortável (SIM/NÃO)?',
+    'question7': 'Q7: Come grandes quantidades sem fome (SIM/NÃO)?',
+    'question8': 'Q8: Come sozinho por vergonha (SIM/NÃO)?',
+    'question9': 'Q9: Sente desgosto/culpa depois (SIM/NÃO)?'
+}
 
-    Assessment 2 (If yes to 3 or more questions, possible diagnosis of TCA):
-    Question 5 - During the binge drinking episode, do you eat more quickly than normal?
-    Question 6 - During the binge drinking episode, do you eat until you feel uncomfortably full?
-    Question 7 - During the binge drinking episode, do you eat large amounts, even when you're not hungry?
-    Question 8 - During the binge drinking episode, do you eat alone because you are ashamed of how much you are eating?
-    Question 9 - During the binge drinking episode, do you feel disgusted, depressed or guilty afterwards?
-    """
-        
-    # Initialize Faker
-    fake = Faker()
-    
-    # Generate data using Faker
-    data = {
-        'question1':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question2':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question3':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question4':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question5':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question6':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question7':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question8':[fake.random_int(min=0, max=1) for row in range(num_rows)],
-        'question9':[fake.random_int(min=0, max=1) for row in range(num_rows)]
-    }
-    
-    return data
+# Criar a lista de nomes de features para a visualização, na ordem das colunas de X
+feature_names = [feature_names_mapping.get(col, col) for col in X.columns]
 
-def create_valid_df():
-    
-    try:
-        
-        while True:
-            
-            # Get data
-            data = generate_data(DATASET_ROWS)
-            
-            # Create DataFrame
-            df_tca = pd.DataFrame(data)
-            
-            # Get list of columns
-            # ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9']
-            assessments = df_tca.columns.tolist()
+# Nomes das classes para a variável alvo (0 para "Investigar outros transtornos", 1 para "Possível TCA")
+class_names = ["Investigar outros transtornos", "Possível TCA"]
 
-            # Diganosis Logic
-            df_tca['tca_diagnosis'] = np.where(((df_tca[assessments[:4]].sum(axis=1)) == 4) & ((df_tca[assessments[4:]].sum(axis=1)) >= 3), 1, 0)
-            
-            tca_cases = df_tca.loc[df_tca['tca_diagnosis'] == 1]
-            
-            if not tca_cases.empty:
-                lg.success("Data frame created successfully")
-                lg.success("Diagnosis completed successfully")
-                
-                # Display TCA Cases
-                lg.info(f"TCA cases:\n{tca_cases}")
-                break
-        
-        return df_tca, assessments
-        
-    except KeyError as e:
-        raise(e)
+# 3. Inicializar e Treinar o Decision Tree Classifier
+# Usamos um random_state para garantir a reprodutibilidade dos resultados.
+# Sem definir max_depth inicialmente para ver a árvore completa.
+dt_classifier = DecisionTreeClassifier(random_state=42)
 
-if __name__ == '__main__':    
-    
-    df_tca, assessments = create_valid_df()
-    
-    # Defining model variables
-    x = df_tca[assessments]
-    y = df_tca['tca_diagnosis']  
-    
-    # Run model
-    clf = tree.DecisionTreeClassifier()
-    clf.fit(x,y)
+# Treinar o modelo
+dt_classifier.fit(X, y)
 
+# 4. Visualizar a Árvore de Decisão
+plt.figure(figsize=(28, 16)) # Ajuste o tamanho da figura para melhor visualização da árvore
+plot_tree(dt_classifier,
+          feature_names=feature_names,
+          class_names=class_names,
+          filled=True, # Preenche os nós com cores baseadas na classe
+          rounded=True, # Arredonda as caixas dos nós
+          fontsize=9) # Tamanho da fonte para maior clareza
 
-    # Plot Results
-    tree.plot_tree(clf, feature_names=assessments, class_names=['No', 'Yes'], filled=True)
-    plt.savefig('tca_tree_decision.png')
+# Adicionar um título à árvore
+plt.title("Árvore de Decisão para Diagnóstico de TCA (Baseada em Dados Fictícios e Fluxograma)", fontsize=18)
 
-# Tests
+# Definir o caminho para salvar a imagem
+output_filename = 'decision_tree_tca_final.png'
+plt.savefig(output_filename)
+plt.close() # Fechar a figura para liberar memória
 
-# # Test1: Success
-# print(clf.predict([[1,1,1,1,1,1,1,1,1]]))
-
-# # Test2: Success
-# print(clf.predict([[1,1,1,1,1,1,1,0,0]]))
-
-# # Test1: Faild
-# print(clf.predict([[1,1,1,1,1,1,0,0,0]]))
-
-# # Test1: Faild
-# print(clf.predict([[1,0,1,1,1,1,1,1,1]]))
+print(f"\nOperação concluída. A árvore de decisão foi gerada e salva como '{output_filename}'.")
+print("\nNota Importante sobre a Ordem das Questões:")
+print("O algoritmo DecisionTreeClassifier do scikit-learn otimiza a ordem das perguntas (features) em cada nó")
+print("para obter a melhor separação dos dados. Portanto, a ordem exata das perguntas no fluxograma original")
+print("não é rigidamente imposta, mas as perguntas mais relevantes (discriminativas) para seus dados tendem")
+print("a aparecer nos níveis superiores da árvore gerada. As labels nas ramificações '0' e '1' indicam 'False' e 'True' (ou 'Não' e 'Sim') respectivamente.")
