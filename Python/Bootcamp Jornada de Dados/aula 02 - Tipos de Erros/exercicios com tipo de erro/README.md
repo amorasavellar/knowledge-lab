@@ -1,105 +1,105 @@
-## Exercícios
+## Exercises
 
-Aqui estão cinco exercícios que envolvem `TypeError`, verificação de tipo (`type check`), o uso de `try-except` para tratamento de exceções e a utilização da estrutura condicional `if`. Esses exercícios aumentam progressivamente em dificuldade e abordam situações práticas onde você pode aplicar esses conceitos.
+Here are five exercises that involve `TypeError`, type checking, the use of `try-except` for exception handling, and the use of the `if` conditional structure. These exercises progressively increase in difficulty and cover practical situations where you can apply these concepts.
 
-### Exercício 21: Conversor de Temperatura
+### Exercise 21: Temperature Converter
 
-Escreva um programa que converta a temperatura de Celsius para Fahrenheit. O programa deve solicitar ao usuário a temperatura em Celsius e, utilizando `try-except`, garantir que a entrada seja numérica, tratando qualquer `ValueError`. Imprima o resultado em Fahrenheit ou uma mensagem de erro se a entrada não for válida.
+Write a program that converts the temperature from Celsius to Fahrenheit. The program should prompt the user for the temperature in Celsius and, using `try-except`, ensure that the input is numeric, handling any `ValueError`. Print the result in Fahrenheit or an error message if the input is not valid.
 
-### Exercício 22: Verificador de Palíndromo
+### Exercise 22: Palindrome Checker
 
-Crie um programa que verifica se uma palavra ou frase é um palíndromo (lê-se igualmente de trás para frente, desconsiderando espaços e pontuações). Utilize `try-except` para garantir que a entrada seja uma string. Dica: Utilize a função `isinstance()` para verificar o tipo da entrada.
+Write a program that checks whether a word or phrase is a palindrome (reads equally backwards, disregarding spaces and punctuation). Use `try-except` to ensure that the input is a string. Hint: Use the `isinstance()` function to check the type of the input.
 
-### Exercício 23: Calculadora Simples
+### Exercise 23: Simple Calculator
 
-Desenvolva uma calculadora simples que aceite duas entradas numéricas e um operador (+, -, *, /) do usuário. Use `try-except` para lidar com divisões por zero e entradas não numéricas. Utilize `if-elif-else` para realizar a operação matemática baseada no operador fornecido. Imprima o resultado ou uma mensagem de erro apropriada.
+Develop a simple calculator that accepts two numeric inputs and an operator (+, -, *, /) from the user. Use `try-except` to handle division by zero and non-numeric inputs. Use `if-elif-else` to perform the mathematical operation based on the given operator. Print the result or an appropriate error message.
 
-### Exercício 24: Classificador de Números
+### Exercise 24: Number Classifier
 
-Escreva um programa que solicite ao usuário para digitar um número. Utilize `try-except` para assegurar que a entrada seja numérica e utilize `if-elif-else` para classificar o número como "positivo", "negativo" ou "zero". Adicionalmente, identifique se o número é "par" ou "ímpar".
+Write a program that prompts the user to enter a number. Use `try-except` to ensure that the input is numeric and use `if-elif-else` to classify the number as "positive", "negative", or "zero". Additionally, identify whether the number is "even" or "odd".
 
-### Exercício 25: Conversão de Tipo com Validação
+### Exercise 25: Type Conversion with Validation
 
-Crie um script que solicite ao usuário uma lista de números separados por vírgula. O programa deve converter a string de entrada em uma lista de números inteiros. Utilize `try-except` para tratar a conversão de cada número e validar que cada elemento da lista convertida é um inteiro. Se a conversão falhar ou um elemento não for um inteiro, imprima uma mensagem de erro. Se a conversão for bem-sucedida para todos os elementos, imprima a lista de inteiros.
+Create a script that prompts the user for a list of numbers separated by commas. The program should convert the input string to a list of integers. Use `try-except` to handle the conversion of each number and validate that each element of the converted list is an integer. If the conversion fails or an element is not an integer, print an error message. If the conversion succeeds for all elements, print the list of integers.
 
-## Exercícios Resolvidos
+## Solved Exercises
 
-### Exercício 21: Conversor de Temperatura
+### Exercise 21: Temperature Converter
 
 ```python
 try:
-    celsius = float(input("Digite a temperatura em Celsius: "))
-    fahrenheit = (celsius * 9/5) + 32
-    print(f"{celsius}°C é igual a {fahrenheit}°F.")
+celsius = float(input("Enter the temperature in Celsius: "))
+fahrenheit = (celsius * 9/5) + 32
+print(f"{celsius}°C is equal to {fahrenheit}°F.")
 except ValueError:
-    print("Por favor, digite um número válido para a temperatura.")
+print("Please enter a valid number for the temperature.")
 ```
 
-### Exercício 22: Verificador de Palíndromo
+### Exercise 22: Palindrome Checker
 
 ```python
-entrada = input("Digite uma palavra ou frase: ")
-if isinstance(entrada, str):
-    formatado = entrada.replace(" ", "").lower()
-    if formatado == formatado[::-1]:
-        print("É um palíndromo.")
-    else:
-        print("Não é um palíndromo.")
+input = input("Enter a word or phrase: ")
+if isinstance(input, str):
+formatted = input.replace(" ", "").lower()
+if formatted == formatted[::-1]:
+print("It's a palindrome.")
 else:
-    print("Entrada inválida. Por favor, digite uma palavra ou frase.")
+print("It's not a palindrome.") palindrome.")
+else:
+print("Invalid input. Please enter a word or phrase.")
 ```
 
-### Exercício 23: Calculadora Simples
+### Exercise 23: Simple Calculator
 
 ```python
 try:
-    num1 = float(input("Digite o primeiro número: "))
-    num2 = float(input("Digite o segundo número: "))
-    operador = input("Digite o operador (+, -, *, /): ")
-    if operador == '+':
-        resultado = num1 + num2
-    elif operador == '-':
-        resultado = num1 - num2
-    elif operador == '*':
-        resultado = num1 * num2
-    elif operador == '/' and num2 != 0:
-        resultado = num1 / num2
-    else:
-        print("Operador inválido ou divisão por zero.")
-    print("Resultado:", resultado)
+num1 = float(input("Enter the first number: "))
+num2 = float(input("Enter the second number: "))
+operator = input("Enter the operator (+, -, *, /): ")
+if operator == '+':
+result = num1 + num2
+elif operator == '-':
+result = num1 - num2
+elif operator == '*':
+result = num1 * num2
+elif operator == '/' and num2 != 0:
+result = num1 / num2
+else:
+print("Invalid operator or division by zero.")
+print("Result:", result)
 except ValueError:
-    print("Erro: Entrada inválida. Certifique-se de inserir números.")
+print("Error: Invalid input. Make sure to enter numbers.")
 ```
 
-### Exercício 24: Classificador de Números
+### Exercise 24: Number Sorter
 
 ```python
 try:
-    numero = int(input("Digite um número: "))
-    if numero > 0:
-        print("Positivo")
-    elif numero < 0:
-        print("Negativo")
-    else:
-        print("Zero")
-    if numero % 2 == 0:
-        print("Par")
-    else:
-        print("Ímpar")
+number = int(input("Enter a number: "))
+if number > 0:
+print("Positive")
+elif number < 0:
+print("Negative")
+else:
+print("Zero")
+if number % 2 == 0:
+print("Even")
+else:
+print("Odd")
 except ValueError:
-    print("Por favor, digite um número inteiro válido.")
+print("Please enter a valid integer.")
 ```
 
-### Exercício 25: Conversão de Tipo com Validação
+### Exercise 25: Type Conversion with Validation
 
 ```python
-entrada_lista = input("Digite uma lista de números separados por vírgula: ")
-numeros_str = entrada_lista.split(",")
-numeros_int = []
+list_input = input("Enter a comma-separated list of numbers: ")
+str_numbers = list_input.split(",")
+int_numbers = []
 try:
-    for num in numeros_str:
-        numeros_int.append(int(num.strip()))
-    print("Lista de inteiros:", numeros_int)
+for num in num_str:
+num_int.append(int(num.strip()))
+print("List of integers:", num_int)
 except ValueError:
-    print("Erro: certifique-se de que todos os elementos são números inteiros válidos.")
+print("Error: Make sure all elements are valid integers.")
 ```

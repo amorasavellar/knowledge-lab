@@ -1,94 +1,94 @@
-## Estruturas de Controle de Fluxo
+## Control Flow Structures
 
-O if é uma estrutura condicional fundamental em Python que avalia se uma condição é verdadeira (True) e, se for, executa um bloco de código. Se a condição inicial não for verdadeira, você pode usar elif (else if) para verificar condições adicionais, e else para executar um bloco de código quando nenhuma das condições anteriores for verdadeira.
+The if statement is a fundamental conditional structure in Python that evaluates whether a condition is true and, if so, executes a block of code. If the initial condition is not true, you can use elif (else if) to check for additional conditions, and else to execute a block of code when none of the previous conditions are true.
 
-Provavelmente o mais conhecido comando de controle de fluxo é o if. Por exemplo:
+Probably the best-known control flow statement is the if statement. For example:
 
 ```python
 x = int(input("Please enter an integer: "))
 
 if x < 0:
-    x = 0
-    print('Negative changed to zero')
+x = 0
+print('Negative changed to zero')
 elif x == 0:
-    print('Zero')
+print('Zero')
 elif x == 1:
-    print('Single')
+print('Single')
 else:
-    print('More')
+print('More')
 ```
 
-### Exercício 1: Verificação de Qualidade de Dados
+### Exercise 1: Data Quality Check
 
-Você está analisando um conjunto de dados de vendas e precisa garantir que todos os registros tenham valores positivos para `quantidade` e `preço`. Escreva um programa que verifique esses campos e imprima "Dados válidos" se ambos forem positivos ou "Dados inválidos" caso contrário.
+You are analyzing a sales data set and need to ensure that all records have positive values ​​for `quantity` and `price`. Write a program that checks these fields and prints "Valid data" if both are positive or "Invalid data" otherwise.
 
 ```python
-quantidade = 10  # Exemplo de valor, substitua com input do usuário se necessário
-preço = 20  # Exemplo de valor, substitua com input do usuário se necessário
+quantity = 10 # Example value, replace with user input if necessary
+price = 20 # Example value, replace with user input if necessary
 
-if quantidade > 0 and preço > 0:
-    print("Dados válidos")
+if quantity > 0 and price > 0:
+print("Valid data")
 else:
-    print("Dados inválidos")
+print("Invalid data")
 ```
 
-### Exercício 2: Classificação de Dados de Sensor
+### Exercise 2: Classifying Sensor Data
 
-Imagine que você está trabalhando com dados de sensores IoT. Os dados incluem medições de temperatura. Você precisa classificar cada leitura como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
+Imagine you are working with IoT sensor data. The data includes temperature measurements. You need to classify each reading as 'Low', 'Normal', or 'High'. Considering that:
 
-* Temperatura < 18°C é 'Baixa'
-* Temperatura >= 18°C e <= 26°C é 'Normal'
-* Temperatura > 26°C é 'Alta'
+* Temperature < 18°C ​​is 'Low'
+* Temperature >= 18°C ​​and <= 26°C is 'Normal'
+* Temperature > 26°C is 'High'
 
 ```python
-temperatura = 22  # Exemplo de valor, substitua com input do usuário se necessário
+temperature = 22 # Example value, replace with user input if necessary
 
-if temperatura < 18:
-    print("Baixa")
-elif 18 <= temperatura <= 26:
-    print("Normal")
+if temperature < 18:
+print("Low")
+elif 18 <= temperature <= 26:
+print("Normal")
 else:
-    print("Alta")
+print("High")
 ```
 
-### Exercício 3: Filtragem de Logs por Severidade
+### Exercise 3: Filtering Logs by Severity
 
-Você está analisando logs de uma aplicação e precisa filtrar mensagens com severidade 'ERROR'. Dado um registro de log em formato de dicionário como `log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Falha na conexão'}`, escreva um programa que imprima a mensagem se a severidade for 'ERROR'.
+You are analyzing logs from an application and need to filter messages with severity 'ERROR'. Given a log record in dictionary format as `log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Connection failed'}`, write a program that prints the message if the severity is 'ERROR'.
 
 ```python
-log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Falha na conexão'}
+log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Connection failed'}
 
 if log['level'] == 'ERROR':
-    print(log['message'])
+print(log['message'])
 ```
 
-### Exercício 4: Validação de Dados de Entrada
+### Exercise 4: Input Data Validation
 
-Antes de processar os dados de usuários em um sistema de recomendação, você precisa garantir que cada usuário tenha idade entre 18 e 65 anos e tenha fornecido um email válido. Escreva um programa que valide essas condições e imprima "Dados de usuário válidos" ou o erro específico encontrado.
+Before processing user data in a recommendation system, you need to ensure that each user is between the ages of 18 and 65 and has provided a valid email address. Write a program that validates these conditions and prints "Valid user data" or the specific error encountered.
 
 ```python
-idade = 25  # Exemplo de valor, substitua com input do usuário se necessário
-email = "usuario@exemplo.com"  # Exemplo de valor, substitua com input do usuário se necessário
+age = 25 # Example value, replace with user input if necessary
+email = "user@example.com" # Example value, replace with user input if necessary
 
-if not 18 <= idade <= 65:
-    print("Idade fora do intervalo permitido")
+if not 18 <= age <= 65:
+print("Age outside the allowed range")
 elif "@" not in email or "." not in email:
-    print("Email inválido")
+print("Invalid email")
 else:
-    print("Dados de usuário válidos")
+print("Valid user data")
 ```
 
-### Exercício 5: Detecção de Anomalias em Dados de Transações
+### Exercise 5: Detecting Anomalies in Transaction Data
 
-Você está trabalhando em um sistema de detecção de fraude e precisa identificar transações suspeitas. Uma transação é considerada suspeita se o valor for superior a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
+You are working on a fraud detection system and need to identify suspicious transactions. A transaction is considered suspicious if the amount is greater than R$10,000 or if it occurs outside business hours (before 9 am or after 6 pm). Given a transaction like `transaction = {'value': 12000, 'time': 20}`, check if it is suspicious.
 
 ```python
-transacao = {'valor': 12000, 'hora': 20}
+transaction = {'value': 12000, 'time': 20}
 
-if transacao['valor'] > 10000 or transacao['hora'] < 9 or transacao['hora'] > 18:
-    print("Transação suspeita")
+if transaction['value'] > 10000 or transaction['time'] < 9 or transaction['time'] > 18:
+print("Suspicious transaction")
 else:
-    print("Transação normal")
+print("Normal transaction")
 ```
 
 ### FOR
@@ -224,106 +224,106 @@ for venda in vendas:
 print(total_por_categoria)
 ```
 
-### Exercícios com WHILE
+### Exercises with WHILE
 
-O loop while é uma estrutura de controle de fluxo fundamental em Python, permitindo executar um bloco de código repetidamente enquanto uma condição especificada é avaliada como verdadeira (True). Na engenharia de dados, o uso do while pode ser extremamente útil para diversas tarefas, como monitoramento contínuo de fontes de dados, execução de processos de ETL (Extract, Transform, Load) até que não haja mais dados para processar, ou mesmo para implementar tentativas de reconexão automáticas a serviços ou bancos de dados quando a primeira tentativa falha.
+The while loop is a fundamental flow control structure in Python, allowing you to execute a block of code repeatedly while a specified condition evaluates to True. In data engineering, the use of while can be extremely useful for several tasks, such as continuous monitoring of data sources, execution of ETL (Extract, Transform, Load) processes until there is no more data to process, or even to implement automatic reconnection attempts to services or databases when the first attempt fails.
 
-#### Exemplo de Uso do while em Engenharia de Dados
-Um cenário comum em engenharia de dados é a necessidade de executar uma tarefa de maneira periódica, como verificar novos dados em um diretório, fazer polling de uma API para novas respostas ou monitorar mudanças em um banco de dados. Nestes casos, um loop while pode ser utilizado para manter o script rodando continuamente ou até que uma condição específica seja atingida (por exemplo, um sinal para desligar ou uma condição de erro).
+#### Example of Using while in Data Engineering
+A common scenario in data engineering is the need to execute a task periodically, such as checking for new data in a directory, polling an API for new responses, or monitoring changes in a database. In these cases, a while loop can be used to keep the script running continuously or until a specific condition is met (for example, a shutdown signal or an error condition).
 
-#### Exemplo Prático: while True com Pausa
+#### Practical Example: while True with Pause
 
-Um exemplo direto do uso de while True em Python é criar um loop infinito que executa uma ação a cada intervalo definido, como imprimir uma mensagem a cada 10 segundos. Isso pode ser útil para monitorar processos ou dados em tempo real com uma verificação periódica.
+A straightforward example of using while True in Python is to create an infinite loop that performs an action at a defined interval, such as printing a message every 10 seconds. This can be useful for monitoring processes or data in real time with a periodic check.
 
 ```python
 import time
 
 while True:
-    print("Verificando novos dados...")
-    # Aqui você pode adicionar o código para verificar novos dados,
-    # por exemplo, checar a existência de novos arquivos em um diretório,
-    # fazer uma consulta a um banco de dados ou API, etc.
-    
-    time.sleep(10)  # Pausa o loop por 10 segundos
+print("Checking for new data...")
+# Here you can add code to check for new data,
+# for example, checking for new files in a directory,
+# making a query to a database or API, etc.
+
+time.sleep(10) # Pauses the loop for 10 seconds
 ```
-Neste exemplo, o while True cria um loop infinito, que é uma maneira poderosa de manter um script rodando continuamente. O print simula a ação de verificar novos dados, e o time.sleep(10) pausa a execução do loop por 10 segundos antes da próxima iteração. Essa abordagem é simples, mas eficaz para muitos cenários de monitoramento e polling em engenharia de dados, permitindo que o script execute uma verificação ou tarefa de maneira periódica.
+In this example, while True creates an infinite loop, which is a powerful way to keep a script running continuously. print simulates the action of checking for new data, and time.sleep(10) pauses the loop for 10 seconds before the next iteration. This approach is simple but effective for many data engineering monitoring and polling scenarios, allowing the script to perform a check or task periodically.
 
-Contudo, é importante usar loops infinitos com cautela para evitar criar condições em que o script possa consumir recursos desnecessários ou tornar-se difícil de encerrar de forma controlada. Em ambientes de produção, outras abordagens como agendamento de tarefas (por exemplo, usando cron jobs em sistemas Unix) ou o uso de sistemas de enfileiramento de mensagens e triggers de banco de dados podem ser mais adequados para algumas dessas tarefas.
+However, it is important to use infinite loops with caution to avoid creating conditions where the script may consume unnecessary resources or become difficult to terminate in a controlled manner. In production environments, other approaches such as task scheduling (e.g. using cron jobs on Unix systems) or the use of message queuing systems and database triggers may be more suitable for some of these tasks.
 
-#### 11. Leitura de Dados até Flag
+#### 11. Reading Data Until Flag
 
-**Objetivo:** Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
+**Objective:** Read input data until a specific keyword ("exit") is given.
 
 ```python
-dados = []
-entrada = ""
-while entrada.lower() != "sair":
-    entrada = input("Digite um valor (ou 'sair' para terminar): ")
-    if entrada.lower() != "sair":
+data = []
+input = ""
+while input.lower() != "exit":
+input = input("Enter a value (or 'exit' to finish): ")
+if input.lower() != "exit":
 ```
 
-#### 12. Validação de Entrada
+#### 12. Input Validation
 
-**Objetivo:** Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
+**Objective:** Prompt the user for a number within a specific range until the input is valid.
 
 ```python
-numero = int(input("Digite um número entre 1 e 10: "))
-while numero < 1 or numero > 10:
-    print("Número fora do intervalo!")
-    numero = int(input("Por favor, digite um número entre 1 e 10: "))
+number = int(input("Please enter a number between 1 and 10: "))
+while number < 1 or number > 10:
+print("Number out of range!")
+number = int(input("Please enter a number between 1 and 10: "))
 
-print("Número válido!")
+print("Valid number!")
 ```
 
-#### 13. Consumo de API Simulado
+#### 13. Simulated API Consumption
 
-**Objetivo:** Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
+**Objective:** Simulate the consumption of a paginated API, where each "page" of data is processed in a loop until there are no more pages.
 
 ```python
-pagina_atual = 1
-paginas_totais = 5  # Simulação, na prática, isso viria da API
+current_page = 1
+total_pages = 5 # Simulation, in practice, this would come from the API
 
-while pagina_atual <= paginas_totais:
-    print(f"Processando página {pagina_atual} de {paginas_totais}")
-    # Aqui iria o código para processar os dados da página
-    pagina_atual += 1
+while current_page <= total_pages:
+print(f"Processing page {current_page} of {total_pages}")
+# Here would be the code to process the page data
+current_page += 1
 
-print("Todas as páginas foram processadas.")
+print("All pages have been processed.")
 ```
 
-#### 14. Tentativas de Conexão
+#### 14. Connection Attempts
 
-**Objetivo:** Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
+**Objective:** Simulate reconnection attempts to a service with a maximum limit of attempts.
 
 ```python
-tentativas_maximas = 5
-tentativa = 1
+maximum_attempts = 5
+attempt = 1
 
-while tentativa <= tentativas_maximas:
-    print(f"Tentativa {tentativa} de {tentativas_maximas}")
-    # Simulação de uma tentativa de conexão
-    # Aqui iria o código para tentar conectar
-    if True:  # Suponha que a conexão foi bem-sucedida
-        print("Conexão bem-sucedida!")
-        break
-    tentativa += 1
+while attempt <= maximum_attempts:
+print(f"Attempt {attempt} of {maximum_attempts}")
+# Simulating a connection attempt
+# Here would be the code to attempt to connect
+if True: # Assume the connection was successful
+print("Connection successful!")
+break
+attempt += 1
 else:
-    print("Falha ao conectar após várias tentativas.")
+print("Failed to connect after multiple attempts.")
 ```
 
-#### 15. Processamento de Dados com Condição de Parada
+#### 15. Data Processing with Stopping Condition
 
-**Objetivo:** Processar itens de uma lista até encontrar um valor específico que indica a parada.
+**Objective:** Process items in a list until a specific value is found that indicates stopping.
 
 ```python
-itens = [1, 2, 3, "parar", 4, 5]
+items = [1, 2, 3, "stop", 4, 5]
 
 i = 0
-while i < len(itens):
-    if itens[i] == "parar":
-        print("Parada encontrada, encerrando o processamento.")
-        break
-    # Processa o item
-    print(f"Processando item: {itens[i]}")
-    i += 1
+while i < len(items):
+if items[i] == "stop":
+print("Stop found, ending processing.")
+break
+# Process the item
+print(f"Processing item: {items[i]}")
+i += 1
 ```
