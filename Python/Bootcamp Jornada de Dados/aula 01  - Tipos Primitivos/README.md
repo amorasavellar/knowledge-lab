@@ -1,45 +1,48 @@
-# Primeiros Comandos com Python
+# First Commands with Python
 
-Nessa aula foi ensinado como aplicar os primeiros comandos em Python, desde print() até a declaração de Tipos Primitivos de dados. Além disso foi ensinado como instalar de forma correta o Python, VS Code, Git e por fim, como utilizar o Github, possibilitando que os scripts desenvolvidos pudessem ser versionados e compartilhados no GitHub.
+This class taught how to apply the first commands in Python, from print() to the declaration of Primitive Data Types. In addition, it taught how to correctly install Python, VS Code, Git and finally, how to use Github, allowing the scripts developed to be versioned and shared on GitHub.
 
-# Principais Pontos da Aula:
+# Main Points of the Class:
 
-**Tipos de Dados**
+**Data Types**
 
-Python suporta vários tipos de dados, incluindo, mas não se limitando a:
+Python supports several data types, including, but not limited to:
 
-* Inteiros (`int`)
-* Números de ponto flutuante (`float`)
+* Integers (`int`)
+* Floating point numbers (`float`)
 * Strings (`str`)
-* Listas (`list`)
-* Tuplas (`tuple`)
-* Dicionários (`dict`)
-* Booleanos (`bool`)
+* Lists (`list`)
+* Tuples (`tuple`)
+* Dictionaries (`dict`)
+* Booleans (`bool`)
 
-A linguagem determina o tipo de dados de uma variável no momento da atribuição, o que permite grande flexibilidade, mas também exige atenção para evitar erros de tipo.
+The language determines the data type of a variable at the time of assignment, which allows great flexibility, but also requires attention to avoid type errors.
 
-**Nomes de Variáveis**
+**Variable Names**
 
-Python tem algumas regras e convenções para nomes de variáveis:
+Python has some rules and conventions for variable names:
 
-* Os nomes podem conter letras, números e sublinhados (`_`), mas não podem começar com um número.
-* Os nomes de variáveis são _case-sensitive_, o que significa que `variavel`, `Variavel`, e `VARIaVEL` são consideradas três variáveis diferentes.
-* Existem algumas palavras reservadas que não podem ser usadas como nomes de variáveis, como `if`, `for`, `class`, entre outras.
-* É recomendado seguir a convenção _snake_case_ para nomes de variáveis que consistem em mais de uma palavra, como `nome_usuario` ou `total_pedidos`.
+* Names can contain letters, numbers, and underscores (`_`), but they cannot begin with a number.
 
-**Dinamismo e Reatribuição**
+* Variable names are case-sensitive, which means that `variable`, `Variavel`, and `VARIaVEL` are considered three different variables.
 
-Uma característica importante das variáveis em Python é a possibilidade de reatribuí-las a diferentes tipos de dados:
+* There are some reserved words that cannot be used as variable names, such as `if`, `for`, `class`, and others.
+
+* It is recommended to follow the _snake_case_ convention for variable names that consist of more than one word, such as `username` or `total_orders`.
+
+**Dynamicity and Reassignment**
+
+A key feature of Python variables is the ability to reassign them to different data types:
 
 ```python
-x = 100        # x é um inteiro
-x = "Python"   # Agora x é uma string
+x = 100 # x is an integer
+x = "Python" # x is now a string
 ```
 
-Isso demonstra a tipagem dinâmica do Python, mas também destaca a importância de gerenciar tipos de dados com cuidado para evitar confusão ou erros em programas mais complexos.
+This demonstrates Python's dynamic typing, but it also highlights the importance of managing data types carefully to avoid confusion or errors in more complex programs.
 
-**Escopo de Variáveis**
+**Variable Scope**
 
-O escopo de uma variável determina onde ela é acessível dentro do código. Variáveis definidas em um bloco principal são globalmente acessíveis, enquanto variáveis definidas dentro de funções são locais a essas funções, a menos que sejam explicitamente declaradas como `global`.
+The scope of a variable determines where it is accessible within the code. Variables defined within a main block are globally accessible, while variables defined within functions are local to those functions unless explicitly declared as `global`.
 
-Entender variáveis e tipos de dados é essencial para programação em Python, pois permite manipular dados de maneira eficaz e criar programas dinâmicos e flexíveis. A capacidade de Python de inferir tipos de dados torna a linguagem acessível para iniciantes, ao mesmo tempo em que oferece poderosas funcionalidades para programadores experientes.
+Understanding variables and data types is essential to Python programming, as it allows you to manipulate data effectively and create dynamic, flexible programs. Python's ability to infer data types makes the language accessible to beginners while still offering powerful functionality to experienced programmers.

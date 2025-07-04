@@ -1,47 +1,47 @@
-### Desafio - Refatorar o projeto da aula anterior evitando Bugs!
+### Challenge - Refactor the project from the previous lesson to avoid bugs!
 
-Para resolver os bugs identificados — tratamento de entradas inválidas que não podem ser convertidas para um número de ponto flutuante e prevenção de valores negativos para salário e bônus, você pode modificar o código diretamente. Isso envolve adicionar verificações adicionais após a tentativa de conversão para garantir que os valores sejam positivos.
+To resolve the identified bugs — handling invalid inputs that cannot be converted to a floating point number and preventing negative values ​​for salary and bonus, you can modify the code directly. This involves adding additional checks after the conversion attempt to ensure that the values ​​are positive.
 
-![imagem_05](./assets/5.png)
+![image_05](./assets/5.png)
 
 ```python
-# Solicita ao usuário que digite seu nome
+# Prompt the user to enter their name
 try:
-    nome = input("Digite seu nome: ")
+name = input("Enter your name: ")
 
-    # Verifica se o nome está vazio
-    if len(nome) == 0:
-        raise ValueError("O nome não pode estar vazio.")
-    # Verifica se há números no nome
-    elif any(char.isdigit() for char in nome):
-        raise ValueError("O nome não deve conter números.")
-    else:
-        print("Nome válido:", nome)
+# Check if the name is empty
+if len(name) == 0:
+raise ValueError("Name cannot be empty.")
+# Check if there are numbers in the name
+elif any(char.isdigit() for char in name):
+raise ValueError("Name must not contain numbers.")
+else:
+print("Valid name:", name)
 except ValueError as e:
-    print(e)
+print(e)
 
-# Solicita ao usuário que digite o valor do seu salário e converte para float
+# Prompt the user to enter the value of their salary and convert it to float
 
 try:
-    salario = float(input("Digite o valor do seu salário: "))
-    if salario < 0:
-        print("Por favor, digite um valor positivo para o salário.")
+salary = float(input("Enter the value of your salary: "))
+if salary < 0:
+print("Please enter a positive value for the salary.")
 except ValueError:
-    print("Entrada inválida para o salário. Por favor, digite um número.")
+print("Input "Invalid input for salary. Please enter a number.")
 
-# Solicita ao usuário que digite o valor do bônus recebido e converte para float
+# Prompt the user to enter the amount of the bonus received and convert to float
 try:
-    bonus_recebido = float(input("Digite o valor do bônus recebido: "))
-    if bonus_recebido < 0:
-        print("Por favor, digite um valor positivo para o bônus.")
+bonus_received = float(input("Enter the amount of the bonus received: "))
+if bonus_received < 0:
+print("Please enter a positive amount for the bonus.")
 except ValueError:
-    print("Entrada inválida para o bônus. Por favor, digite um número.")
+print("Invalid input for bonus. Please enter a number.")
 
-# Assumindo uma lógica de cálculo para o bônus final e KPI
-bonus_final = bonus_recebido * 1.2  # Exemplo, ajuste conforme necessário
-kpi = (salario + bonus_final) / 1000  # Exemplo simples de KPI
+# Assuming a calculation logic for the final bonus and KPI
+bonus_final = bonus_received * 1.2 # Example, adjust as needed
+kpi = (salary + final_bonus) / 1000 # Simple KPI example
 
-# Imprime as informações para o usuário
-print(f"Seu KPI é: {kpi:.2f}")
-print(f"{nome}, seu salário é R${salario:.2f} e seu bônus final é R${bonus_final:.2f}.")
+# Print the information to the user
+print(f"Your KPI is: {kpi:.2f}")
+print(f"{name}, your salary is R${salary:.2f} and your final bonus is R${final_bonus:.2f}.")
 ```
